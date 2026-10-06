@@ -1,53 +1,2892 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>自己紹介 - ayatocraft</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#080a10">
+<meta name="description" content="ayatocraft - AIを活用しながらWebやアプリを制作する個人クリエイター。">
+<title>ayatocraft — Creator / Developer</title>
+
 <style>
-    body{
-        font-family: Arial, sans-serif;
-        background:#f5f7fb;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        height:100vh;
-        margin:0;
-    }
-    .card{
-        background:white;
-        padding:40px;
-        border-radius:20px;
-        box-shadow:0 10px 30px rgba(0,0,0,0.1);
-        text-align:center;
-        max-width:500px;
-    }
-    h1{
-        margin-bottom:10px;
-    }
-    a{
-        color:#4a90e2;
-        text-decoration:none;
-        font-weight:bold;
-    }
-    a:hover{
-        text-decoration:underline;
-    }
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  background:#080a10;
+  scroll-behavior:auto;
+}
+
+body{
+  background:#080a10;
+  color:#f5f7ff;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  overflow-x:hidden;
+}
+
+/* =========================
+   VARIABLES
+========================= */
+
+:root{
+  --bg:#080a10;
+  --panel:#10131c;
+  --panel2:#151923;
+
+  --text:#f5f7ff;
+  --muted:#a3a9b8;
+  --subtle:#6c7280;
+
+  --blue:#4da3ff;
+  --cyan:#4de4ff;
+  --purple:#9d7cff;
+  --pink:#ff72c7;
+  --green:#5ee6a8;
+
+  --line:rgba(255,255,255,.105);
+}
+
+/* =========================
+   BASE
+========================= */
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+section{
+  position:relative;
+  overflow:hidden;
+}
+
+.container{
+  width:min(1080px,calc(100% - 40px));
+  margin:auto;
+}
+
+.kicker{
+  display:flex;
+  align-items:center;
+  gap:9px;
+
+  color:#aeb4c3;
+  font-size:13px;
+  letter-spacing:.08em;
+
+  margin-bottom:18px;
+}
+
+.kicker::before{
+  content:"";
+
+  width:7px;
+  height:7px;
+
+  flex:none;
+
+  border-radius:50%;
+
+  background:var(--blue);
+  box-shadow:0 0 12px rgba(77,163,255,.6);
+}
+
+.description{
+  max-width:650px;
+
+  color:var(--muted);
+
+  font-size:17px;
+  line-height:1.85;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  position:fixed;
+
+  z-index:1000;
+
+  top:0;
+  left:0;
+
+  width:100%;
+  height:58px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 28px;
+
+  background:rgba(8,10,16,.82);
+
+  border-bottom:
+    1px solid rgba(255,255,255,.07);
+
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+
+.logo{
+  font-size:17px;
+  font-weight:700;
+  letter-spacing:-.04em;
+}
+
+.nav{
+  display:flex;
+  gap:24px;
+
+  color:#9da3b1;
+  font-size:13px;
+}
+
+.nav a{
+  transition:color .2s ease;
+}
+
+.nav a:hover{
+  color:#fff;
+}
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress{
+  position:fixed;
+
+  z-index:1100;
+
+  top:0;
+  left:0;
+
+  width:100%;
+  height:2px;
+
+  transform:
+    scaleX(0);
+
+  transform-origin:left;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--blue),
+      var(--purple),
+      var(--pink)
+    );
+
+  will-change:transform;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  min-height:100svh;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+}
+
+.hero-bg{
+  position:absolute;
+
+  inset:0;
+
+  pointer-events:none;
+}
+
+.glow{
+  position:absolute;
+
+  border-radius:50%;
+
+  will-change:transform;
+}
+
+.glow.one{
+  width:420px;
+  height:420px;
+
+  left:5%;
+  top:10%;
+
+  background:
+    rgba(60,120,255,.11);
+}
+
+.glow.two{
+  width:350px;
+  height:350px;
+
+  right:5%;
+  bottom:10%;
+
+  background:
+    rgba(150,80,255,.09);
+}
+
+.grid{
+  position:absolute;
+
+  inset:0;
+
+  opacity:.12;
+
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,.07) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.07) 1px,
+      transparent 1px
+    );
+
+  background-size:55px 55px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      black 30%,
+      black 70%,
+      transparent
+    );
+}
+
+.hero-content{
+  position:relative;
+
+  z-index:5;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.hero-label{
+  color:#9097a7;
+
+  font-size:13px;
+  letter-spacing:.13em;
+
+  margin-bottom:20px;
+}
+
+.hero-title{
+  font-size:
+    clamp(
+      58px,
+      11vw,
+      125px
+    );
+
+  line-height:.9;
+
+  letter-spacing:-.075em;
+
+  font-weight:750;
+
+  overflow:hidden;
+}
+
+/*
+   Hero文字を1文字ずつ
+*/
+
+.hero-title .char{
+  display:inline-block;
+
+  will-change:
+    transform,
+    opacity;
+
+  transform:
+    translate3d(
+      0,
+      70px,
+      0
+    )
+    rotateX(70deg);
+
+  opacity:0;
+}
+
+.hero-title .blue{
+  color:var(--blue);
+}
+
+.hero-sub{
+  margin:28px auto 0;
+
+  max-width:620px;
+
+  color:#aeb3c0;
+
+  font-size:18px;
+  line-height:1.7;
+
+  overflow:hidden;
+}
+
+.hero-sub .line{
+  display:block;
+
+  transform:
+    translate3d(
+      0,
+      35px,
+      0
+    );
+
+  opacity:0;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.scroll{
+  position:absolute;
+
+  bottom:28px;
+
+  left:50%;
+
+  transform:
+    translateX(-50%);
+
+  color:#6e7481;
+
+  font-size:11px;
+
+  letter-spacing:.14em;
+}
+
+.scroll span{
+  display:block;
+
+  width:1px;
+  height:35px;
+
+  margin:10px auto 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #777,
+      transparent
+    );
+}
+
+/* =========================
+   PARTICLE SECTION
+========================= */
+
+.showcase{
+  min-height:155svh;
+}
+
+.showcase-stage{
+  position:sticky;
+
+  top:0;
+
+  height:100svh;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.particle-field{
+  position:absolute;
+
+  inset:0;
+
+  pointer-events:none;
+}
+
+.particle{
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  width:56px;
+  height:56px;
+
+  margin:-28px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:
+    1px solid rgba(255,255,255,.12);
+
+  border-radius:16px;
+
+  background:#11141d;
+
+  color:#cbd3e5;
+
+  font-size:20px;
+
+  will-change:
+    transform,
+    opacity;
+
+  contain:
+    layout
+    paint;
+}
+
+.particle.blue{
+  color:var(--blue);
+}
+
+.particle.cyan{
+  color:var(--cyan);
+}
+
+.particle.purple{
+  color:var(--purple);
+}
+
+.particle.pink{
+  color:var(--pink);
+}
+
+.particle.green{
+  color:var(--green);
+}
+
+.showcase-center{
+  position:relative;
+
+  z-index:5;
+
+  width:min(680px,90%);
+
+  text-align:center;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.showcase-center h2{
+  font-size:
+    clamp(
+      38px,
+      6vw,
+      70px
+    );
+
+  line-height:1.04;
+
+  letter-spacing:-.055em;
+
+  margin-bottom:24px;
+
+  overflow:hidden;
+}
+
+.text-line{
+  display:block;
+
+  overflow:hidden;
+}
+
+.text-line span{
+  display:inline-block;
+
+  transform:
+    translate3d(
+      0,
+      100%,
+      0
+    );
+
+  opacity:0;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.accent{
+  color:var(--blue);
+}
+
+.showcase-center p{
+  color:var(--muted);
+
+  font-size:17px;
+  line-height:1.8;
+}
+
+/* =========================
+   STORY
+========================= */
+
+.story{
+  min-height:135svh;
+
+  display:flex;
+  align-items:center;
+}
+
+.story-grid{
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:80px;
+
+  align-items:center;
+}
+
+.story-copy{
+  will-change:
+    transform,
+    opacity;
+}
+
+.story-number{
+  color:var(--subtle);
+
+  font-size:12px;
+
+  letter-spacing:.13em;
+
+  margin-bottom:20px;
+}
+
+.story-title{
+  font-size:
+    clamp(
+      38px,
+      6vw,
+      70px
+    );
+
+  line-height:1.02;
+
+  letter-spacing:-.055em;
+
+  overflow:hidden;
+}
+
+.story-title .word{
+  display:inline-block;
+
+  transform:
+    translate3d(
+      0,
+      80px,
+      0
+    );
+
+  opacity:0;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.story-title strong{
+  color:var(--blue);
+}
+
+.story-copy .description{
+  margin-top:26px;
+}
+
+.story-card{
+  position:relative;
+
+  min-height:400px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #151923,
+      #0d0f15
+    );
+
+  overflow:hidden;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.card-grid{
+  position:absolute;
+
+  inset:0;
+
+  opacity:.16;
+
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.08) 1px,
+      transparent 1px
+    );
+
+  background-size:38px 38px;
+}
+
+.code-window{
+  position:absolute;
+
+  width:80%;
+
+  left:10%;
+  top:17%;
+
+  padding:22px;
+
+  border-radius:18px;
+
+  background:#090b10;
+
+  border:
+    1px solid rgba(255,255,255,.1);
+
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Consolas,
+    monospace;
+
+  font-size:13px;
+  line-height:1.9;
+
+  color:#9ba5b8;
+
+  transform:
+    rotate(-3deg);
+
+  will-change:
+    transform;
+}
+
+.code-blue{color:var(--blue)}
+.code-purple{color:var(--purple)}
+.code-green{color:var(--green)}
+.code-pink{color:var(--pink)}
+
+/* =========================
+   AI
+========================= */
+
+.ai{
+  min-height:150svh;
+}
+
+.ai-stage{
+  position:sticky;
+
+  top:0;
+
+  height:100svh;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.ai-orb{
+  position:absolute;
+
+  width:250px;
+  height:250px;
+
+  border-radius:50%;
+
+  border:
+    1px solid rgba(77,163,255,.25);
+
+  box-shadow:
+    0 0 65px rgba(77,163,255,.1),
+    inset 0 0 45px rgba(77,163,255,.04);
+
+  will-change:
+    transform;
+}
+
+.ai-orb::before,
+.ai-orb::after{
+  content:"";
+
+  position:absolute;
+
+  border:
+    1px solid rgba(155,124,255,.2);
+
+  border-radius:50%;
+}
+
+.ai-orb::before{
+  inset:35px;
+}
+
+.ai-orb::after{
+  inset:-45px;
+}
+
+.ai-core{
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  width:86px;
+  height:86px;
+
+  margin:-43px;
+
+  border-radius:24px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#151a25;
+
+  border:
+    1px solid rgba(255,255,255,.15);
+
+  color:#fff;
+
+  font-size:20px;
+  font-weight:700;
+
+  will-change:
+    transform;
+}
+
+.ai-text{
+  position:relative;
+
+  z-index:5;
+
+  width:min(700px,90%);
+
+  text-align:center;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.ai-title{
+  font-size:
+    clamp(
+      38px,
+      6vw,
+      70px
+    );
+
+  line-height:1.04;
+
+  letter-spacing:-.055em;
+
+  overflow:hidden;
+}
+
+.ai-title .char{
+  display:inline-block;
+
+  transform:
+    translate3d(
+      0,
+      70px,
+      0
+    )
+    rotateX(60deg);
+
+  opacity:0;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.ai-text p{
+  margin-top:25px;
+
+  color:var(--muted);
+
+  line-height:1.85;
+
+  font-size:17px;
+}
+
+/* =========================
+   ACTIVITIES
+========================= */
+
+.activities{
+  padding:150px 0;
+}
+
+.activity-head{
+  margin-bottom:65px;
+
+  overflow:hidden;
+}
+
+.activity-title{
+  font-size:
+    clamp(
+      38px,
+      6vw,
+      70px
+    );
+
+  line-height:1.02;
+
+  letter-spacing:-.055em;
+}
+
+.activity-title .char{
+  display:inline-block;
+
+  transform:
+    translate3d(
+      0,
+      80px,
+      0
+    );
+
+  opacity:0;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.activity-head p{
+  margin-top:22px;
+}
+
+.activity-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:18px;
+}
+
+.activity-card{
+  position:relative;
+
+  min-height:250px;
+
+  padding:30px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:26px;
+
+  background:#10131a;
+
+  overflow:hidden;
+
+  transform:
+    translate3d(
+      0,
+      60px,
+      0
+    );
+
+  opacity:0;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.activity-icon{
+  width:50px;
+  height:50px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:15px;
+
+  background:#181c26;
+
+  border:
+    1px solid rgba(255,255,255,.08);
+
+  font-size:22px;
+
+  will-change:
+    transform;
+}
+
+.activity-card h3{
+  margin-top:45px;
+
+  font-size:25px;
+
+  letter-spacing:-.035em;
+}
+
+.activity-card p{
+  margin-top:12px;
+
+  color:#9096a5;
+
+  line-height:1.7;
+}
+
+.activity-card .color{
+  position:absolute;
+
+  right:-35px;
+  bottom:-35px;
+
+  width:130px;
+  height:130px;
+
+  border-radius:50%;
+
+  opacity:.12;
+}
+
+.c1 .color{background:var(--blue)}
+.c2 .color{background:var(--purple)}
+.c3 .color{background:var(--cyan)}
+.c4 .color{background:var(--pink)}
+
+/* =========================
+   LEARNING
+========================= */
+
+.learning{
+  min-height:125svh;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.learning-content{
+  width:min(850px,90%);
+
+  text-align:center;
+}
+
+.learning-title{
+  font-size:
+    clamp(
+      38px,
+      6vw,
+      70px
+    );
+
+  line-height:1.02;
+
+  letter-spacing:-.055em;
+
+  overflow:hidden;
+}
+
+.learning-title .char{
+  display:inline-block;
+
+  transform:
+    translate3d(
+      0,
+      75px,
+      0
+    );
+
+  opacity:0;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.learning-line{
+  display:flex;
+
+  justify-content:center;
+
+  gap:8px;
+
+  flex-wrap:wrap;
+
+  margin:35px auto;
+}
+
+.word{
+  padding:10px 15px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:999px;
+
+  color:#aeb4c2;
+
+  background:#10131a;
+
+  transform:
+    translate3d(
+      0,
+      30px,
+      0
+    );
+
+  opacity:0;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.learning-content > p{
+  color:var(--muted);
+
+  line-height:1.85;
+
+  font-size:17px;
+
+  max-width:680px;
+
+  margin:auto;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+.links{
+  padding:140px 0;
+}
+
+.links-head{
+  margin-bottom:60px;
+}
+
+.links-title{
+  font-size:
+    clamp(
+      38px,
+      6vw,
+      70px
+    );
+
+  line-height:1.02;
+
+  letter-spacing:-.055em;
+
+  overflow:hidden;
+}
+
+.links-title .char{
+  display:inline-block;
+
+  transform:
+    translate3d(
+      0,
+      70px,
+      0
+    );
+
+  opacity:0;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.links-head p{
+  margin-top:20px;
+}
+
+.link-grid{
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:18px;
+}
+
+.link-card{
+  display:block;
+
+  min-height:220px;
+
+  padding:30px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:27px;
+
+  background:#10131a;
+
+  transition:
+    transform .2s ease,
+    border-color .2s ease;
+}
+
+.link-card:hover{
+  transform:
+    translateY(-4px);
+
+  border-color:
+    rgba(255,255,255,.22);
+}
+
+.link-label{
+  color:#7c8290;
+
+  font-size:12px;
+
+  letter-spacing:.12em;
+
+  text-transform:uppercase;
+}
+
+.link-card h3{
+  margin-top:55px;
+
+  font-size:27px;
+}
+
+.link-card p{
+  margin-top:12px;
+
+  color:#8e94a2;
+}
+
+/* =========================
+   END
+========================= */
+
+.end{
+  min-height:100svh;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+}
+
+.end-content{
+  width:min(850px,90%);
+}
+
+.end-title{
+  font-size:
+    clamp(
+      45px,
+      8vw,
+      90px
+    );
+
+  line-height:1;
+
+  letter-spacing:-.06em;
+
+  overflow:hidden;
+}
+
+.end-title .char{
+  display:inline-block;
+
+  transform:
+    translate3d(
+      0,
+      80px,
+      0
+    );
+
+  opacity:0;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.end p{
+  max-width:600px;
+
+  margin:30px auto 0;
+
+  color:var(--muted);
+
+  line-height:1.8;
+}
+
+.end .accent{
+  color:var(--blue);
+}
+
+.footer{
+  margin-top:90px;
+
+  color:#555b68;
+
+  font-size:12px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:720px){
+
+  header{
+    padding:0 18px;
+  }
+
+  .nav{
+    display:none;
+  }
+
+  .container{
+    width:
+      min(
+        calc(100% - 30px),
+        1080px
+      );
+  }
+
+  .hero-title{
+    font-size:
+      clamp(
+        55px,
+        17vw,
+        90px
+      );
+  }
+
+  .hero-sub{
+    font-size:16px;
+  }
+
+  .particle{
+    width:46px;
+    height:46px;
+
+    margin:-23px;
+
+    border-radius:14px;
+
+    font-size:17px;
+  }
+
+  .story-grid{
+    grid-template-columns:1fr;
+
+    gap:45px;
+  }
+
+  .story-card{
+    min-height:320px;
+  }
+
+  .activity-grid,
+  .link-grid{
+    grid-template-columns:1fr;
+  }
+
+  .activity-card{
+    min-height:230px;
+  }
+
+  .ai-orb{
+    width:190px;
+    height:190px;
+  }
+
+  .ai-core{
+    width:70px;
+    height:70px;
+
+    margin:-35px;
+  }
+}
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+    animation:none!important;
+    transition:none!important;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<div class="card">
-    <h1>👋 ayatocraft</h1>
-    <p>GitHubでプログラミングを気ままにやってます。音楽好き！(ビートに乗れるやつ)</p>
-    <p>GitHub Pageで自作ソフト公開しています。クオリティ低いけどどうぞご覧ください！</p>
+<header>
+
+  <div class="logo">
+    ayatocraft
+  </div>
+
+  <nav class="nav">
+    <a href="#about">About</a>
+    <a href="#activity">Activity</a>
+    <a href="#links">Links</a>
+  </nav>
+
+</header>
+
+<div
+  class="progress"
+  id="progress"
+></div>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+  <div class="hero-bg">
+
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+
+    <div class="grid"></div>
+
+  </div>
+
+
+  <div
+    class="hero-content"
+    id="heroContent"
+  >
+
+    <div class="hero-label">
+      Independent Creator / Developer
+    </div>
+
+    <h1
+      class="hero-title">
+      ayato<span class="blue">craft</span>
+    </h1>
+
+    <p class="hero-sub">
+
+      <span class="line">
+        アイデアをコードに。
+      </span>
+
+      <span class="line">
+        Web・アプリ・インタラクティブコンテンツを制作しています。
+      </span>
+
+    </p>
+
+  </div>
+
+
+  <div class="scroll">
+
+    SCROLL
+
+    <span></span>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PARTICLE
+========================= -->
+
+<section class="showcase">
+
+  <div class="showcase-stage">
+
+    <div
+      class="particle-field"
+      id="particles"
+    >
+
+      <div class="particle blue">⌘</div>
+      <div class="particle cyan">&lt;/&gt;</div>
+      <div class="particle purple">✦</div>
+      <div class="particle pink">●</div>
+      <div class="particle green">✓</div>
+      <div class="particle blue">JS</div>
+      <div class="particle purple">AI</div>
+      <div class="particle cyan">UI</div>
+      <div class="particle pink">+</div>
+      <div class="particle green">⚡</div>
+      <div class="particle blue">{ }</div>
+      <div class="particle purple">◆</div>
+
+    </div>
+
+
+    <div
+      class="showcase-center"
+      id="showcaseCenter"
+    >
+
+      <div class="kicker">
+        01 / Ideas → Code
+      </div>
+
+      <h2>
+
+        <span class="text-line">
+          <span>ひとつのアイデアから</span>
+        </span>
+
+        <span class="text-line">
+          <span class="accent">
+            すべてが始まる。
+          </span>
+        </span>
+
+      </h2>
+
+      <p>
+        作りたいものを思いついたら、
+        調べて、設計して、コードを書いて、
+        実際に動かしてみる。
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section
+  class="story"
+  id="about"
+>
+
+  <div class="container">
+
+    <div class="story-grid">
+
+      <div
+        class="story-copy"
+        id="storyCopy"
+      >
+
+        <div class="story-number">
+          02 / ABOUT
+        </div>
+
+        <h2
+          class="story-title"
+          data-split-words
+        >
+          作って、<br>
+          <strong>試して、</strong><br>
+          改善する。
+        </h2>
+
+        <p class="description">
+          ayatocraftは、WebサイトやWebアプリなどを
+          自分で制作している個人活動です。
+          完璧なものを最初から作るのではなく、
+          実際に動かしながら少しずつ改善しています。
+        </p>
+
+      </div>
+
+
+      <div
+        class="story-card"
+        id="storyCard"
+      >
+
+        <div class="card-grid"></div>
+
+        <div class="code-window">
+
+          <div>
+            <span class="code-purple">
+              const
+            </span>
+            project =
+          </div>
+
+          <div>{</div>
+
+          <div>
+            &nbsp;&nbsp;name:
+            <span class="code-green">
+              "ayatocraft"
+            </span>,
+          </div>
+
+          <div>
+            &nbsp;&nbsp;idea:
+            <span class="code-blue">
+              true
+            </span>,
+          </div>
+
+          <div>
+            &nbsp;&nbsp;learning:
+            <span class="code-pink">
+              true
+            </span>
+          </div>
+
+          <div>};</div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     AI
+========================= -->
+
+<section class="ai">
+
+  <div class="ai-stage">
+
+    <div
+      class="ai-orb"
+      id="aiOrb"
+    >
+
+      <div
+        class="ai-core"
+        id="aiCore"
+      >
+        AI
+      </div>
+
+    </div>
+
+
+    <div
+      class="ai-text"
+      id="aiText"
+    >
+
+      <div class="kicker">
+        03 / AI Assisted Development
+      </div>
+
+      <h2
+        class="ai-title"
+        data-split
+      >
+        AIと一緒に<br>
+        <span class="accent">
+          コードを書く。
+        </span>
+      </h2>
+
+      <p>
+        ayatocraftでは、
+        AIによるコーディングも活用しています。
+        アイデアの整理、コードの生成、
+        エラーの原因調査、新しい技術の学習などに
+        AIを利用しています。
+      </p>
+
+      <p>
+        生成されたコードをそのまま使うのではなく、
+        実際に動かして確認し、
+        自分で修正しながら制作しています。
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ACTIVITY
+========================= -->
+
+<section
+  class="activities"
+  id="activity"
+>
+
+  <div class="container">
+
+    <div class="activity-head">
+
+      <div class="kicker">
+        04 / Activity
+      </div>
+
+      <h2
+        class="activity-title"
+        data-split
+      >
+        いろいろな<br>
+        <span style="color:var(--blue)">
+          ものを作っています。
+        </span>
+      </h2>
+
+      <p class="description">
+        Web開発を中心に、UI、アプリ、
+        実験的なコンテンツなど、
+        興味を持ったものを実際に作っています。
+      </p>
+
+    </div>
+
+
+    <div class="activity-grid">
+
+      <article class="activity-card c1">
+
+        <div class="activity-icon">
+          ⌘
+        </div>
+
+        <h3>
+          Web Development
+        </h3>
+
+        <p>
+          HTML / CSS / JavaScriptなどを使った
+          Webサイト・Webアプリの開発。
+        </p>
+
+        <div class="color"></div>
+
+      </article>
+
+
+      <article class="activity-card c2">
+
+        <div class="activity-icon">
+          &lt;/&gt;
+        </div>
+
+        <h3>
+          UI & Design
+        </h3>
+
+        <p>
+          使いやすさや見た目、
+          アニメーションなどを考えながら
+          インターフェースを制作。
+        </p>
+
+        <div class="color"></div>
+
+      </article>
+
+
+      <article class="activity-card c3">
+
+        <div class="activity-icon">
+          ✦
+        </div>
+
+        <h3>
+          Interactive
+        </h3>
+
+        <p>
+          スクロールや操作に反応する、
+          アプリのような
+          インタラクティブコンテンツ。
+        </p>
+
+        <div class="color"></div>
+
+      </article>
+
+
+      <article class="activity-card c4">
+
+        <div class="activity-icon">
+          ⚡
+        </div>
+
+        <h3>
+          Experiment
+        </h3>
+
+        <p>
+          新しい技術やAPIなど、
+          気になったものを実際に試しています。
+        </p>
+
+        <div class="color"></div>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     LEARNING
+========================= -->
+
+<section class="learning">
+
+  <div class="learning-content">
+
+    <div class="kicker">
+      05 / Still Learning
+    </div>
+
+    <h2
+      class="learning-title"
+      data-split
+    >
+      まだまだ<br>
+      <span style="color:var(--blue)">
+        学んでいる途中。
+      </span>
+    </h2>
+
+
+    <div class="learning-line">
+
+      <span class="word">試す</span>
+      <span class="word">失敗する</span>
+      <span class="word">調べる</span>
+      <span class="word">修正する</span>
+      <span class="word">学ぶ</span>
+      <span class="word">また作る</span>
+
+    </div>
+
 
     <p>
-        🔗 <a href="https://ayatocraft.github.io/ichiran" target="_blank">
-        github.com/ayatocraft
-        </a>
+      ayatocraftは、まだまだ未熟です。
+      知らないことも多く、うまくいかないこともあります。
+      だからこそ、実際に作りながら学び、
+      少しずつできることを増やしています。
     </p>
-</div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     LINKS
+========================= -->
+
+<section
+  class="links"
+  id="links"
+>
+
+  <div class="container">
+
+    <div class="links-head">
+
+      <div class="kicker">
+        06 / Connect
+      </div>
+
+      <h2
+        class="links-title"
+        data-split
+      >
+        ayatocraftを<br>
+        <span style="color:var(--blue)">
+          もっと見る。
+        </span>
+      </h2>
+
+      <p class="description">
+        制作物や活動についてはこちらから。
+      </p>
+
+    </div>
+
+
+    <div class="link-grid">
+
+      <a
+        class="link-card"
+        href="https://github.com/ayatocraft"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        <div class="link-label">
+          GitHub
+        </div>
+
+        <h3>
+          github.com/ayatocraft
+        </h3>
+
+        <p>
+          制作したプロジェクトやコードを見る。
+        </p>
+
+      </a>
+
+
+      <a
+        class="link-card"
+        href="https://lin.ee/PVAQ4hj"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        <div class="link-label">
+          LINE Official Account
+        </div>
+
+        <h3>
+          ayatocraft 公式アカウント
+        </h3>
+
+        <p>
+          LINE公式アカウントはこちら。
+        </p>
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     END
+========================= -->
+
+<section class="end">
+
+  <div class="end-content">
+
+    <div class="end-label">
+      07 / KEEP BUILDING
+    </div>
+
+    <h2
+      class="end-title"
+      data-split
+    >
+      まだ途中。<br>
+      だから、<br>
+      <span class="accent">
+        作り続ける。
+      </span>
+    </h2>
+
+    <p>
+      AIも活用しながら、自分で考え、作り、学び、改善する。
+      これからも新しいものづくりに挑戦していきます。
+    </p>
+
+    <div class="footer">
+      ayatocraft
+    </div>
+
+  </div>
+
+</section>
+
+
+<script>
+(() => {
+
+  "use strict";
+
+
+  /*
+   * ========================================
+   * Text preparation
+   *
+   * 文字をspanに分解。
+   * DOMを増やしすぎないよう、
+   * 対象見出しだけを分解する。
+   * ========================================
+   */
+
+  function splitCharacters(element){
+
+    if(!element || element.dataset.ready){
+      return;
+    }
+
+    const nodes =
+      [...element.childNodes];
+
+    nodes.forEach(node => {
+
+      if(node.nodeType !== Node.TEXT_NODE){
+        return;
+      }
+
+      const text =
+        node.textContent;
+
+      const fragment =
+        document.createDocumentFragment();
+
+      [...text].forEach(char => {
+
+        const span =
+          document.createElement("span");
+
+        span.className = "char";
+
+        span.textContent =
+          char === " "
+            ? "\u00a0"
+            : char;
+
+        fragment.appendChild(span);
+
+      });
+
+      node.replaceWith(fragment);
+
+    });
+
+    element.dataset.ready = "true";
+  }
+
+
+  document
+    .querySelectorAll("[data-split]")
+    .forEach(splitCharacters);
+
+
+  /*
+   * ========================================
+   * Elements
+   * ========================================
+   */
+
+  const progress =
+    document.getElementById("progress");
+
+  const hero =
+    document.getElementById("heroContent");
+
+  const heroChars =
+    [...document.querySelectorAll(
+      ".hero-title .char"
+    )];
+
+  const heroLines =
+    [...document.querySelectorAll(
+      ".hero-sub .line"
+    )];
+
+  const showcase =
+    document.querySelector(".showcase");
+
+  const showcaseCenter =
+    document.getElementById(
+      "showcaseCenter"
+    );
+
+  const showcaseLines =
+    [...document.querySelectorAll(
+      ".showcase-center .text-line span"
+    )];
+
+  const particles =
+    [...document.querySelectorAll(
+      ".particle"
+    )];
+
+  const story =
+    document.querySelector(".story");
+
+  const storyCopy =
+    document.getElementById(
+      "storyCopy"
+    );
+
+  const storyCard =
+    document.getElementById(
+      "storyCard"
+    );
+
+  const storyWords =
+    [...document.querySelectorAll(
+      ".story-title .word"
+    )];
+
+  const ai =
+    document.querySelector(".ai");
+
+  const aiOrb =
+    document.getElementById("aiOrb");
+
+  const aiCore =
+    document.getElementById("aiCore");
+
+  const aiText =
+    document.getElementById("aiText");
+
+  const aiChars =
+    [...document.querySelectorAll(
+      ".ai-title .char"
+    )];
+
+  const activityTitleChars =
+    [...document.querySelectorAll(
+      ".activity-title .char"
+    )];
+
+  const activityCards =
+    [...document.querySelectorAll(
+      ".activity-card"
+    )];
+
+  const learningTitleChars =
+    [...document.querySelectorAll(
+      ".learning-title .char"
+    )];
+
+  const words =
+    [...document.querySelectorAll(
+      ".learning-line .word"
+    )];
+
+  const linksTitleChars =
+    [...document.querySelectorAll(
+      ".links-title .char"
+    )];
+
+  const endTitleChars =
+    [...document.querySelectorAll(
+      ".end-title .char"
+    )];
+
+
+  /*
+   * ========================================
+   * Utilities
+   * ========================================
+   */
+
+  const clamp =
+    (value,min,max) =>
+      Math.min(
+        Math.max(value,min),
+        max
+      );
+
+
+  const ease =
+    value =>
+      value * value *
+      (3 - 2 * value);
+
+
+  function progressFor(
+    element,
+    startOffset = 1,
+    endOffset = .35
+  ){
+
+    if(!element){
+      return 0;
+    }
+
+    const rect =
+      element.getBoundingClientRect();
+
+    const start =
+      window.innerHeight *
+      startOffset;
+
+    const end =
+      window.innerHeight *
+      endOffset;
+
+    return clamp(
+      (start - rect.top) /
+      (start - end),
+      0,
+      1
+    );
+  }
+
+
+  /*
+   * ========================================
+   * Character animation helper
+   * ========================================
+   */
+
+  function animateCharacters(
+    chars,
+    progressValue,
+    distance = 70,
+    stagger = .035
+  ){
+
+    chars.forEach(
+      (char,index) => {
+
+        const local =
+          clamp(
+            (
+              progressValue -
+              index * stagger
+            ) /
+            .42,
+            0,
+            1
+          );
+
+        const e =
+          ease(local);
+
+        const y =
+          (1 - e) *
+          distance;
+
+        const rotate =
+          (1 - e) *
+          28;
+
+        char.style.transform =
+          `translate3d(
+            0,
+            ${y}px,
+            0
+          )
+          rotateX(${rotate}deg)`;
+
+        char.style.opacity =
+          String(e);
+
+      }
+    );
+  }
+
+
+  /*
+   * ========================================
+   * Particle animation
+   * ========================================
+   */
+
+  function animateParticles(p){
+
+    particles.forEach(
+      (particle,index) => {
+
+        const angle =
+          (
+            Math.PI * 2 /
+            particles.length
+          ) * index -
+          Math.PI / 2;
+
+        const distance =
+          30 +
+          p *
+          (
+            240 +
+            (index % 3) * 75
+          );
+
+        const x =
+          Math.cos(angle) *
+          distance;
+
+        const y =
+          Math.sin(angle) *
+          distance;
+
+        const rotate =
+          p *
+          (index % 2 ? 40 : -40);
+
+        const scale =
+          .65 +
+          p * .35;
+
+        particle.style.transform =
+          `translate3d(
+            ${x}px,
+            ${y}px,
+            0
+          )
+          rotate(${rotate}deg)
+          scale(${scale})`;
+
+        particle.style.opacity =
+          String(
+            p < .72
+              ? 1
+              : 1 -
+                (
+                  (p - .72) /
+                  .28
+                )
+          );
+
+      }
+    );
+  }
+
+
+  /*
+   * ========================================
+   * Main animation
+   * ========================================
+   */
+
+  let ticking = false;
+
+
+  function update(){
+
+    const scrollY =
+      window.scrollY || 0;
+
+
+    /*
+     * Global progress
+     */
+
+    const maxScroll =
+      Math.max(
+        1,
+        document.documentElement
+          .scrollHeight -
+        window.innerHeight
+      );
+
+    progress.style.transform =
+      `scaleX(${
+        clamp(
+          scrollY / maxScroll,
+          0,
+          1
+        )
+      })`;
+
+
+    /*
+     * HERO
+     */
+
+    const heroP =
+      clamp(
+        scrollY /
+        (window.innerHeight * .75),
+        0,
+        1
+      );
+
+    if(hero){
+
+      hero.style.transform =
+        `translate3d(
+          0,
+          ${heroP * -110}px,
+          0
+        )
+        scale(
+          ${1 - heroP * .12}
+        )`;
+
+      hero.style.opacity =
+        String(1 - heroP);
+    }
+
+    /*
+     * Hero text initial animation
+     */
+
+    animateCharacters(
+      heroChars,
+      clamp(
+        scrollY /
+        (window.innerHeight * .45),
+        0,
+        1
+      ),
+      70,
+      .025
+    );
+
+    heroLines.forEach(
+      (line,index) => {
+
+        const p =
+          clamp(
+            (
+              scrollY /
+              window.innerHeight
+            ) -
+            index * .12,
+            0,
+            1
+          );
+
+        const e =
+          ease(p);
+
+        line.style.transform =
+          `translate3d(
+            0,
+            ${(1-e)*35}px,
+            0
+          )`;
+
+        line.style.opacity =
+          String(e);
+
+      }
+    );
+
+
+    /*
+     * PARTICLES
+     */
+
+    if(showcase){
+
+      const p =
+        progressFor(
+          showcase,
+          1,
+          .05
+        );
+
+      const particleP =
+        clamp(
+          p / .72,
+          0,
+          1
+        );
+
+      animateParticles(
+        ease(particleP)
+      );
+
+
+      const textP =
+        clamp(
+          (
+            p - .08
+          ) / .5,
+          0,
+          1
+        );
+
+      animateCharacters(
+        showcaseLines,
+        ease(textP),
+        55,
+        .07
+      );
+
+      if(showcaseCenter){
+
+        showcaseCenter.style.transform =
+          `translate3d(
+            0,
+            ${(1-textP)*45}px,
+            0
+          )
+          scale(
+            ${.96 + textP*.04}
+          )`;
+      }
+
+    }
+
+
+    /*
+     * STORY
+     */
+
+    if(story){
+
+      const p =
+        progressFor(
+          story,
+          1,
+          .25
+        );
+
+      const e =
+        ease(p);
+
+      animateCharacters(
+        storyWords,
+        p,
+        80,
+        .08
+      );
+
+      if(storyCopy){
+
+        storyCopy.style.transform =
+          `translate3d(
+            ${(1-e)*-55}px,
+            ${(1-e)*35}px,
+            0
+          )`;
+
+        storyCopy.style.opacity =
+          String(
+            .2 + e*.8
+          );
+      }
+
+      if(storyCard){
+
+        storyCard.style.transform =
+          `translate3d(
+            ${(1-e)*65}px,
+            ${(1-e)*25}px,
+            0
+          )
+          rotate(
+            ${(1-e)*4}deg
+          )`;
+
+        storyCard.style.opacity =
+          String(e);
+      }
+    }
+
+
+    /*
+     * AI
+     */
+
+    if(ai){
+
+      const p =
+        progressFor(
+          ai,
+          1,
+          .15
+        );
+
+      const e =
+        ease(p);
+
+      animateCharacters(
+        aiChars,
+        p,
+        70,
+        .035
+      );
+
+      if(aiOrb){
+
+        aiOrb.style.transform =
+          `rotate(
+            ${p*180}deg
+          )
+          scale(
+            ${.7+e*.35}
+          )`;
+      }
+
+      if(aiCore){
+
+        aiCore.style.transform =
+          `rotate(
+            ${-p*180}deg
+          )
+          scale(
+            ${.8+e*.2}
+          )`;
+      }
+
+      if(aiText){
+
+        aiText.style.transform =
+          `translate3d(
+            0,
+            ${(1-e)*70}px,
+            0
+          )`;
+
+        aiText.style.opacity =
+          String(
+            .15 + e*.85
+          );
+      }
+    }
+
+
+    /*
+     * ACTIVITY TITLE
+     */
+
+    const activity =
+      document.querySelector(
+        ".activities"
+      );
+
+    if(activity){
+
+      const p =
+        progressFor(
+          activity,
+          1,
+          .55
+        );
+
+      animateCharacters(
+        activityTitleChars,
+        p,
+        70,
+        .025
+      );
+    }
+
+
+    /*
+     * ACTIVITY CARDS
+     */
+
+    activityCards.forEach(
+      (card,index) => {
+
+        const rect =
+          card.getBoundingClientRect();
+
+        const p =
+          clamp(
+            (
+              window.innerHeight*.9 -
+              rect.top
+            ) /
+            (
+              window.innerHeight*.45
+            ),
+            0,
+            1
+          );
+
+        const e =
+          ease(p);
+
+        card.style.transform =
+          `translate3d(
+            0,
+            ${(1-e)*60}px,
+            0
+          )`;
+
+        card.style.opacity =
+          String(e);
+
+        const icon =
+          card.querySelector(
+            ".activity-icon"
+          );
+
+        if(icon){
+
+          icon.style.transform =
+            `translate3d(
+              0,
+              ${(1-e)*15}px,
+              0
+            )
+            rotate(
+              ${(1-e)*-10}deg
+            )`;
+        }
+
+      }
+    );
+
+
+    /*
+     * LEARNING
+     */
+
+    const learning =
+      document.querySelector(
+        ".learning"
+      );
+
+    if(learning){
+
+      const p =
+        progressFor(
+          learning,
+          1,
+          .35
+        );
+
+      animateCharacters(
+        learningTitleChars,
+        p,
+        75,
+        .025
+      );
+
+      words.forEach(
+        (word,index) => {
+
+          const local =
+            clamp(
+              p -
+              index*.08,
+              0,
+              1
+            );
+
+          const e =
+            ease(local);
+
+          word.style.transform =
+            `translate3d(
+              0,
+              ${(1-e)*30}px,
+              0
+            )`;
+
+          word.style.opacity =
+            String(e);
+
+        }
+      );
+    }
+
+
+    /*
+     * LINKS
+     */
+
+    const links =
+      document.querySelector(
+        ".links"
+      );
+
+    if(links){
+
+      const p =
+        progressFor(
+          links,
+          1,
+          .45
+        );
+
+      animateCharacters(
+        linksTitleChars,
+        p,
+        70,
+        .025
+      );
+    }
+
+
+    /*
+     * END
+     */
+
+    const end =
+      document.querySelector(
+        ".end"
+      );
+
+    if(end){
+
+      const p =
+        progressFor(
+          end,
+          1,
+          .35
+        );
+
+      animateCharacters(
+        endTitleChars,
+        p,
+        80,
+        .025
+      );
+    }
+
+
+    ticking = false;
+  }
+
+
+  function requestUpdate(){
+
+    if(ticking){
+      return;
+    }
+
+    ticking = true;
+
+    requestAnimationFrame(
+      update
+    );
+  }
+
+
+  /*
+   * ========================================
+   * Event listeners
+   *
+   * mousemove は使用しない。
+   * ========================================
+   */
+
+  window.addEventListener(
+    "scroll",
+    requestUpdate,
+    {
+      passive:true
+    }
+  );
+
+  window.addEventListener(
+    "resize",
+    requestUpdate,
+    {
+      passive:true
+    }
+  );
+
+
+  /*
+   * ========================================
+   * Scroll restoration OFF
+   * ========================================
+   */
+
+  if(
+    "scrollRestoration"
+    in history
+  ){
+    history.scrollRestoration =
+      "manual";
+  }
+
+
+  /*
+   * スクロール位置は保存しない。
+   */
+
+  function resetScroll(){
+
+    window.scrollTo(
+      0,
+      0
+    );
+  }
+
+
+  resetScroll();
+
+
+  window.addEventListener(
+    "pageshow",
+    () => {
+
+      resetScroll();
+
+      requestUpdate();
+
+    }
+  );
+
+
+  /*
+   * 初期状態
+   */
+
+  requestUpdate();
+
+
+})();
+</script>
 
 </body>
 </html>
